@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Steam Store Clone</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #1b2838;
+            color: white;
+        }
+
+        header {
+            background-color: #2a475e;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: center;
+
+        }
+
+        header h1 {
+            color: #66c0f4;
+            margin: 0;
+            font-size: 24px;
+        }
+
+        /* Responsive grid */
+        @media (max-width: 768px) {
+            .carousel {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .carousel-item,
+            .special-card {
+                width: 90%;
+            }
+
+            .specials-list {
+                justify-content: center;
+            }
+        }
+
+        /* Top navigation */
+        .navbar {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 250px;
+            background-color: #171a21;
+        }
+
+        .navbar .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            position: relative;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+        }
+
+        .navbar .search {
+            flex-grow: 1;
+            max-width: 220px;
+            margin-left: 20px;
+        }
+
+        .navbar input[type="text"] {
+            width: 100%;
+            padding: 5px;
+            border-radius: 3px;
+            border: none;
+        }
+
+        /* Categories Section */
+        .categories {
+            background-color: #2a475e;
+            padding: 10px 15px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .category {
+            background-color: #171a21;
+            padding: 5px 10px;
+            border-radius: 20px;
+            text-decoration: none;
+            color: #66c0f4;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .category:hover {
+            background-color: #3c6e91;
+        }
+
+        /* Carousel */
+        .carousel {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding: 30px 210px;
+            gap: 20px;
+        }
+
+        .carousel-item {
+            flex: none;
+            width: 340px;
+            background-color: #2a475e;
+            border-radius: 10px;
+            overflow: hidden;
+            scroll-snap-align: center;
+        }
+
+        .carousel-item img {
+            width: 100%;
+            display: block;
+        }
+
+        .carousel-item .info {
+            padding: 10px;
+        }
+
+        .carousel-item .info h3 {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .carousel-item .info .price {
+            margin-top: 5px;
+            font-size: 14px;
+        }
+
+        .carousel-item .discount {
+            color: #66c0f4;
+        }
+
+        .carousel-item .description,
+        .carousel-item .rating {
+            font-size: 12px;
+            color: #b0c4d8;
+            margin-top: 5px;
+        }
+
+        /* Specials Section */
+        .specials {
+            padding: 30px 210px;
+        }
+
+        .specials h2 {
+            margin-bottom: 20px;
+        }
+
+        .specials-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .special-card {
+            background-color: #2a475e;
+            border-radius: 10px;
+            width: 220px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .special-card img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+        }
+
+        .special-card .info {
+            padding: 10px;
+        }
+
+        .special-card .info h4 {
+            margin: 0;
+            font-size: 16px;
+        }
+
+        .special-card .info .price {
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .special-card .description,
+        .special-card .rating {
+            font-size: 12px;
+            color: #b0c4d8;
+            margin-top: 5px;
+        }
+
+        /* Browse by Category */
+        .browse-category {
+            padding: 80px 210px;
+        }
+
+        .browse-category h2 {
+            margin-bottom: 30px;
+        }
+
+        .category-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .category-card {
+            background-color: #2a475e;
+            border-radius: 10px;
+            width: 200px;
+            overflow: hidden;
+            text-align: center;
+            padding-bottom: 10px;
+        }
+
+        .category-card img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+        }
+
+        .category-card h4 {
+            margin: 10px 0 0;
+            font-size: 16px;
+            color: #66c0f4;
+        }
+
+        .browse-block {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 40px 210px;
+            background-color: #16202d;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .browse-list {
+            flex: 1;
+            min-width: 300px;
+            border-right: 2px solid #0e141b;
+        }
+
+        .browse-item {
+            display: flex;
+            gap: 10px;
+            padding: 10px;
+            border-bottom: 1px solid #0e141b;
+            text-decoration: none;
+            color: white;
+            transition: background-color 0.2s;
+        }
+
+        .browse-item:hover {
+            background-color: #2a475e;
+        }
+
+        .browse-item img {
+            width: 120px;
+            height: 65px;
+            object-fit: cover;
+        }
+
+        .browse-details {
+            flex: 1;
+        }
+
+        .browse-details h4 {
+            margin: 0;
+            font-size: 24px;
+            color: #66c0f4;
+        }
+
+        .browse-details .tags,
+        .browse-details .price {
+            font-size: 12px;
+            color: #b0c4d8;
+        }
+
+        .browse-details .discount {
+            color: #a1cd44;
+            font-weight: bold;
+        }
+
+        .browse-preview-block {
+            flex: 1;
+            min-width: 300px;
+            background-color: #2a475e;
+            padding: 20px;
+            position: relative;
+        }
+
+        .browse-preview {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 20px;
+        }
+
+        .browse-preview:target {
+            display: block;
+            position: relative;
+        }
+
+        .browse-preview h3 {
+            margin-top: 0;
+        }
+
+        .browse-preview .tags {
+            margin-bottom: 10px;
+        }
+
+        .browse-preview img {
+            width: 100%;
+            margin-bottom: 10px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<div class="navbar">
+    <div class="nav-links">
+        <a href="index.html">Store</a>
+        <a href="community.html">Community</a>
+        <a href="about.html">Info</a>
+        <a href="support.html">Support</a>
+    </div>
+    <div class="search">
+        <input type="text" placeholder="Search...">
+    </div>
+</div>
+
+<header>
+    <h1>Store</h1>
+</header>
+
+<div class="categories">
+    <a href="#" class="category">My store</a>
+    <a href="#" class="category">New releases</a>
+    <a href="#" class="category">Category</a>
+    <a href="#" class="category">Green light</a>
+    <a href="#" class="category">News</a>
+</div>
+
+<div class="carousel">
+    <div class="carousel-item">
+        <img src="fish.jpg" alt="Game 1">
+        <div class="info">
+            <h3>Game Title 1</h3>
+            <div class="price">
+                <span class="discount">-50%</span> $19.99 → $9.99
+            </div>
+            <div class="description">A thrilling fast-paced action shooter with co-op gameplay.</div>
+            <div class="rating">★★★★☆</div>
+        </div>
+    </div>
+
+    <div class="carousel-item">
+        <img src="fish.jpg" alt="Game 2">
+        <div class="info">
+            <h3>Game Title 2</h3>
+            <div class="price">
+                <span class="discount">-30%</span> $29.99 → $20.99
+            </div>
+            <div class="description">Explore mysterious lands and solve ancient puzzles.</div>
+            <div class="rating">★★★☆☆</div>
+        </div>
+    </div>
+
+    <div class="carousel-item">
+        <img src="fish.jpg" alt="Game 3">
+        <div class="info">
+            <h3>Game Title 3</h3>
+            <div class="price">
+                <span class="discount">-70%</span> $49.99 → $14.99
+            </div>
+            <div class="description">An open-world RPG with hundreds of hours of content.</div>
+            <div class="rating">★★★★★</div>
+        </div>
+    </div>
+</div>
+
+<div class="carousel">
+    <div class="carousel-item">
+        <img src="fish.jpg" alt="Game 3">
+        <div class="info">
+            <h3>Game Title 3</h3>
+            <div class="price">
+                <span class="discount">-70%</span> $49.99 → $14.99
+            </div>
+            <div class="description">An open-world RPG with hundreds of hours of content.</div>
+            <div class="rating">★★★★★</div>
+        </div>
+    </div>
+
+    <div class="carousel-item">
+        <img src="fish.jpg" alt="Game 3">
+        <div class="info">
+            <h3>Game Title 3</h3>
+            <div class="price">
+                <span class="discount">-70%</span> $49.99 → $14.99
+            </div>
+            <div class="description">An open-world RPG with hundreds of hours of content.</div>
+            <div class="rating">★★★★★</div>
+        </div>
+    </div>
+
+    <div class="carousel-item">
+        <img src="fish.jpg" alt="Game 3">
+        <div class="info">
+            <h3>Game Title 3</h3>
+            <div class="price">
+                <span class="discount">-70%</span> $49.99 → $14.99
+            </div>
+            <div class="description">An open-world RPG with hundreds of hours of content.</div>
+            <div class="rating">★★★★★</div>
+        </div>
+    </div>
+
+</div>
+
+<div class="specials" id="specials">
+    <h2>Specials & Events</h2>
+    <div class="specials-list">
+        <div class="special-card">
+            <img src="fish.jpg" alt="Special 1">
+            <div class="info">
+                <h4>Survival Quest</h4>
+                <div class="price"><span class="discount">-60%</span> $24.99 → $9.99</div>
+                <div class="description">Explore a post-apocalyptic world full of danger and mystery. Survive,
+                    craft, and uncover secrets.</div>
+                <div class="rating">★★★★☆</div>
+            </div>
+        </div>
+
+        <div class="special-card">
+            <img src="fish.jpg" alt="Special 2">
+            <div class="info">
+                <h4>Alien Conflict</h4>
+                <div class="price"><span class="discount">-75%</span> $39.99 → $9.99</div>
+                <div class="description">Join the interstellar war against alien invaders. Tactical combat and deep
+                    space exploration await.</div>
+                <div class="rating">★★★☆☆</div>
+            </div>
+        </div>
+
+        <div class="special-card">
+            <img src="fish.jpg" alt="Special 3">
+            <div class="info">
+                <h4>Island Builder</h4>
+                <div class="price"><span class="discount">-40%</span> $19.99 → $11.99</div>
+                <div class="description">Design and manage your own tropical paradise. Build, expand, and keep your
+                    islanders happy.</div>
+                <div class="rating">★★★★★</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="browse-category">
+    <h2>Browse by Category</h2>
+    <div class="category-list">
+        <div class="category-card">
+            <img src="fish.jpg" alt="Action">
+            <h4>Action</h4>
+        </div>
+        <div class="category-card">
+            <img src="https://via.placeholder.com/200x120" alt="Adventure">
+            <h4>Adventure</h4>
+        </div>
+        <div class="category-card">
+            <img src="https://via.placeholder.com/200x120" alt="RPG">
+            <h4>RPG</h4>
+        </div>
+        <div class="category-card">
+            <img src="https://via.placeholder.com/200x120" alt="Simulation">
+            <h4>Simulation</h4>
+        </div>
+        <div class="category-card">
+            <img src="https://via.placeholder.com/200x120" alt="Strategy">
+            <h4>Strategy</h4>
+        </div>
+        <div class="category-card">
+            <img src="fish.jpg" alt="Indie">
+            <h4>Indie</h4>
+        </div>
+    </div>
+</div>
+
+<div class="browse-block">
+    <div class="browse-list">
+        <a href="#preview1" class="browse-item">
+            <img src="fish.jpg" alt="Game 1">
+            <div class="browse-details">
+                <h4>Sky Raiders</h4>
+                <div class="tags">Action, Multiplayer, Flight</div>
+                <div class="price"><span class="discount">-40%</span> $29.99 → $17.99</div>
+            </div>
+        </a>
+        <a href="#preview2" class="browse-item">
+            <img src="fish.jpg" alt="Game 2">
+            <div class="browse-details">
+                <h4>Deep Abyss</h4>
+                <div class="tags">Survival, Exploration, Ocean</div>
+                <div class="price">$24.99</div>
+            </div>
+        </a>
+        <a href="#preview3" class="browse-item">
+            <img src="fish.jpg" alt="Game 3">
+            <div class="browse-details">
+                <h4>Rogue Protocol</h4>
+                <div class="tags">Roguelike, Sci-Fi, Strategy</div>
+                <div class="price"><span class="discount">-30%</span> $19.99 → $13.99</div>
+            </div>
+        </a>
+        <a href="#preview4" class="browse-item">
+            <img src="fish.jpg" alt="Game 4">
+            <div class="browse-details">
+                <h4>Mythbound</h4>
+                <div class="tags">RPG, Fantasy, Open World</div>
+                <div class="price">$39.99</div>
+            </div>
+        </a>
+        <a href="#preview5" class="browse-item">
+            <img src="fish.jpg" alt="Game 5">
+            <div class="browse-details">
+                <h4>Zero District</h4>
+                <div class="tags">Shooter, Cyberpunk, PvP</div>
+                <div class="price"><span class="discount">-50%</span> $49.99 → $24.99</div>
+            </div>
+        </a>
+    </div>
+    <div class="browse-preview-block">
+        <div class="browse-preview" id="preview1">
+            <h3>Sky Raiders</h3>
+            <div class="tags">Action, Multiplayer, Flight</div>
+            <img src="fish.jpg" alt="Screenshot">
+            <p>Take to the skies in an intense multiplayer dogfighting game.</p>
+        </div>
+        <div class="browse-preview" id="preview2">
+            <h3>Deep Abyss</h3>
+            <div class="tags">Survival, Exploration, Ocean</div>
+            <img src="fish.jpg" alt="Screenshot">
+            <p>Explore the mysterious depths and survive the unknown.</p>
+        </div>
+        <div class="browse-preview" id="preview3">
+            <h3>Rogue Protocol</h3>
+            <div class="tags">Roguelike, Sci-Fi, Strategy</div>
+            <img src="fish.jpg" alt="Screenshot">
+            <p>Hack through waves of security systems in this sci-fi rogue.</p>
+        </div>
+        <div class="browse-preview" id="preview4">
+            <h3>Mythbound</h3>
+            <div class="tags">RPG, Fantasy, Open World</div>
+            <img src="fish.jpg" alt="Screenshot">
+            <p>Embark on an epic quest through a world of myths and magic.</p>
+        </div>
+        <div class="browse-preview" id="preview5">
+            <h3>Zero District</h3>
+            <div class="tags">Shooter, Cyberpunk, PvP</div>
+            <img src="fish.jpg" alt="Screenshot">
+            <p>Battle in neon-lit streets in this competitive cyberpunk shooter.</p>
+        </div>
+    </div>
+</div>
+</body>

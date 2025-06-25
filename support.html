@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Steam Support</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #1b2838;
+      color: #c7d5e0;
+    }
+
+    header {
+      background-color: #171a21;
+      padding: 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      color: #66c0f4;
+      font-size: 28px;
+    }
+
+    .search {
+      max-width: 600px;
+      margin: 30px auto;
+      text-align: center;
+    }
+
+    .search input {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      background-color: #16202d;
+      color: #c7d5e0;
+      border: 1px solid #3d4450;
+      border-radius: 4px;
+    }
+
+    .topics {
+      max-width: 1000px;
+      margin: 40px auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      padding: 0 20px;
+    }
+
+    .topic {
+      background-color: #2a475e;
+      padding: 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .topic:hover {
+      background-color: #3c6b8e;
+    }
+
+    .topic h2 {
+      margin: 0;
+      font-size: 16px;
+      color: #a1cd44;
+    }
+
+    .topic p {
+      font-size: 13px;
+      color: #c7d5e0;
+      margin-top: 6px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #6a89a1;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Steam Support</h1>
+  </header>
+
+  <div class="search">
+    <input type="text" placeholder="Describe your issue..." />
+  </div>
+
+  <div class="topics">
+    <div class="topic">
+      <h2>Games, Software, etc.</h2>
+      <p>Help with purchases, downloads, and gameplay issues.</p>
+    </div>
+    <div class="topic">
+      <h2>Purchases</h2>
+      <p>Refunds, payment methods, and transaction problems.</p>
+    </div>
+    <div class="topic">
+      <h2>My Account</h2>
+      <p>Login help, lost passwords, and security settings.</p>
+    </div>
+    <div class="topic">
+      <h2>Steam Guard, Mobile Authenticator</h2>
+      <p>Two-factor authentication and mobile access.</p>
+    </div>
+    <div class="topic">
+      <h2>Trading, Gifting, Market</h2>
+      <p>Issues with Steam Market, item trades, and gift sending.</p>
+    </div>
+    <div class="topic">
+      <h2>Steam Community</h2>
+      <p>Problems with friends, chat, groups, or screenshots.</p>
+    </div>
+    <div class="topic">
+      <h2>Steam Hardware</h2>
+      <p>Support for Steam Deck, controllers, and more.</p>
+    </div>
+    <div class="topic">
+      <h2>Something Else</h2>
+      <p>Can't find your issue? Browse all help topics.</p>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 Steam Support Clone — built with only HTML & CSS.
+  </footer>
+</body>
+</html>

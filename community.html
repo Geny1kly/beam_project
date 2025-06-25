@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Steam Community Discussions</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #1b2838;
+      color: #c7d5e0;
+    }
+
+    header {
+      background-color: #2a475e;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: center;
+
+    }
+
+    header h1 {
+      color: #66c0f4;
+      margin: 0;
+      font-size: 24px;
+    }
+
+    nav {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    nav a {
+      color: #c7d5e0;
+      text-decoration: none;
+      font-size: 14px;
+      padding: 6px 12px;
+      border: 1px solid #3d4450;
+      border-radius: 4px;
+    }
+
+    nav a:hover {
+      background-color: #2a475e;
+    }
+
+    .content {
+      max-width: 1000px;
+      margin: 30px auto;
+      background-color: #2a475e;
+      padding: 20px;
+      border-radius: 6px;
+    }
+
+    .discussion {
+      border-bottom: 1px solid #3d4450;
+      padding: 15px 0;
+    }
+
+    .discussion h2 {
+      font-size: 18px;
+      color: #66c0f4;
+      margin: 0;
+    }
+
+    .discussion p {
+      margin: 5px 0;
+      font-size: 14px;
+    }
+
+    .discussion .meta {
+      font-size: 12px;
+      color: #a6bacc;
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .filters select,
+    .filters input {
+      padding: 6px;
+      background-color: #1b2838;
+      color: #c7d5e0;
+      border: 1px solid #3d4450;
+      border-radius: 4px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 12px;
+      color: #6a89a1;
+    }
+
+    .navbar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 250px;
+      background-color: #171a21;
+    }
+
+    .navbar .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      position: relative;
+    }
+
+    .navbar a {
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+    }
+
+    .navbar .search {
+      flex-grow: 1;
+      max-width: 220px;
+      margin-left: 20px;
+    }
+
+    .navbar input[type="text"] {
+      width: 100%;
+      padding: 5px;
+      border-radius: 3px;
+      border: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="navbar">
+    <div class="nav-links">
+      <a href="index.html">Store</a>
+      <a href="community.html">Community</a>
+      <a href="about.html">Info</a>
+      <a href="support.html">Support</a>
+    </div>
+
+    <div class="search">
+      <input type="text" placeholder="Search...">
+    </div>
+  </div>
+
+  <header>
+    <h1>Community Discussions</h1>
+  </header>
+
+  <nav>
+    <a href="#">All Discussions</a>
+    <a href="#">Screenshots</a>
+    <a href="#">Artwork</a>
+    <a href="#">Videos</a>
+    <a href="#">Workshop</a>
+    <a href="#">News</a>
+    <a href="#">Guides</a>
+    <a href="#">Reviews</a>
+  </nav>
+
+  <div class="content">
+    <div class="filters">
+      <input type="text" placeholder="Search discussions..." />
+      <select>
+        <option>Sort by: Most Recent</option>
+        <option>Most Replies</option>
+        <option>Newest Topics</option>
+      </select>
+      <select>
+        <option>All Subforums</option>
+        <option>General</option>
+        <option>Help</option>
+        <option>Feedback</option>
+      </select>
+    </div>
+
+    <div class="discussion">
+      <h2>How to fix crashing on startup?</h2>
+      <p>I keep getting a crash every time I launch the game after the latest patch. Anyone else?</p>
+      <div class="meta">Started by user123 • 12 replies • Last post 2 hours ago</div>
+    </div>
+
+    <div class="discussion">
+      <h2>New update broke the multiplayer lobby</h2>
+      <p>Can't see my friends online anymore. What changed?</p>
+      <div class="meta">Started by devfan98 • 8 replies • Last post 4 hours ago</div>
+    </div>
+
+    <div class="discussion">
+      <h2>Performance tips for low-end PCs?</h2>
+      <p>Any suggestions on how to optimize settings for older hardware?</p>
+      <div class="meta">Started by lowfpsguy • 3 replies • Last post 6 hours ago</div>
+    </div>
+  </div>
+
+</body>
+
+</html>
