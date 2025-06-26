@@ -4,337 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Steam Store Clone</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #1b2838;
-            color: white;
-        }
-
-        header {
-            background-color: #2a475e;
-            padding: 10px 20px;
-            display: flex;
-            justify-content: center;
-
-        }
-
-        header h1 {
-            color: #66c0f4;
-            margin: 0;
-            font-size: 24px;
-        }
-
-        /* Responsive grid */
-        @media (max-width: 768px) {
-            .carousel {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .carousel-item,
-            .special-card {
-                width: 90%;
-            }
-
-            .specials-list {
-                justify-content: center;
-            }
-        }
-
-        /* Top navigation */
-        .navbar {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 250px;
-            background-color: #171a21;
-        }
-
-        .navbar .nav-links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            position: relative;
-        }
-
-        .navbar a {
-            text-decoration: none;
-            color: white;
-            font-weight: bold;
-        }
-
-        .navbar .search {
-            flex-grow: 1;
-            max-width: 220px;
-            margin-left: 20px;
-        }
-
-        .navbar input[type="text"] {
-            width: 100%;
-            padding: 5px;
-            border-radius: 3px;
-            border: none;
-        }
-
-        /* Categories Section */
-        .categories {
-            background-color: #2a475e;
-            padding: 10px 15px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            justify-content: center;
-        }
-
-        .category {
-            background-color: #171a21;
-            padding: 5px 10px;
-            border-radius: 20px;
-            text-decoration: none;
-            color: #66c0f4;
-            font-weight: bold;
-            transition: background-color 0.3s;
-        }
-
-        .category:hover {
-            background-color: #3c6e91;
-        }
-
-		.header-container {
-            padding: 30px 210px;
-		}
-
-        /* Carousel */
-        .carousel {
-            display: flex;
-			flex-wrap: wrap;
-            scroll-snap-type: x mandatory;
-            gap: 20px;
-        }
-
-        .carousel-item {
-            flex: none;
-			color: white;
-			text-decoration: none;
-            width: 340px;
-            background-color: #2a475e;
-            border-radius: 10px;
-            overflow: hidden;
-            scroll-snap-align: center;
-        }
-
-        .carousel-item img {
-            width: 100%;
-            display: block;
-        }
-
-        .carousel-item .info {
-            padding: 10px;
-        }
-
-        .carousel-item .info h3 {
-            margin: 0;
-            font-size: 18px;
-        }
-
-        .carousel-item .info .price {
-            margin-top: 5px;
-            font-size: 14px;
-        }
-
-        .carousel-item .discount {
-            color: #66c0f4;
-        }
-
-        .carousel-item .description,
-        .carousel-item .rating {
-            font-size: 12px;
-            color: #b0c4d8;
-            margin-top: 5px;
-        }
-
-        /* Specials Section */
-        .specials {
-            padding: 30px 210px;
-        }
-
-        .specials h2 {
-            margin-bottom: 20px;
-        }
-
-        .specials-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .special-card {
-            background-color: #2a475e;
-            border-radius: 10px;
-            width: 220px;
-            overflow: hidden;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-        }
-
-        .special-card img {
-            width: 100%;
-            height: 120px;
-            object-fit: cover;
-        }
-
-        .special-card .info {
-            padding: 10px;
-        }
-
-        .special-card .info h4 {
-            margin: 0;
-            font-size: 16px;
-        }
-
-        .special-card .info .price {
-            font-size: 14px;
-            margin-top: 5px;
-        }
-
-        .special-card .description,
-        .special-card .rating {
-            font-size: 12px;
-            color: #b0c4d8;
-            margin-top: 5px;
-        }
-
-        /* Browse by Category */
-        .browse-category {
-            padding: 80px 210px;
-        }
-
-        .browse-category h2 {
-            margin-bottom: 30px;
-        }
-
-        .category-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .category-card {
-            background-color: #2a475e;
-            border-radius: 10px;
-            width: 200px;
-            overflow: hidden;
-            text-align: center;
-            padding-bottom: 10px;
-        }
-
-        .category-card img {
-            width: 100%;
-            height: 120px;
-            object-fit: cover;
-        }
-
-        .category-card h4 {
-            margin: 10px 0 0;
-            font-size: 16px;
-            color: #66c0f4;
-        }
-
-        .browse-block {
-            display: flex;
-            flex-wrap: wrap;
-            margin: 40px 210px;
-            background-color: #16202d;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        .browse-list {
-            flex: 1;
-            min-width: 300px;
-            border-right: 2px solid #0e141b;
-        }
-
-        .browse-item {
-            display: flex;
-            gap: 10px;
-            padding: 10px;
-            border-bottom: 1px solid #0e141b;
-            text-decoration: none;
-            color: white;
-            transition: background-color 0.2s;
-        }
-
-        .browse-item:hover {
-            background-color: #2a475e;
-        }
-
-        .browse-item img {
-            width: 120px;
-            height: 65px;
-            object-fit: cover;
-        }
-
-        .browse-details {
-            flex: 1;
-        }
-
-        .browse-details h4 {
-            margin: 0;
-            font-size: 24px;
-            color: #66c0f4;
-        }
-
-        .browse-details .tags,
-        .browse-details .price {
-            font-size: 12px;
-            color: #b0c4d8;
-        }
-
-        .browse-details .discount {
-            color: #a1cd44;
-            font-weight: bold;
-        }
-
-        .browse-preview-block {
-            flex: 1;
-            min-width: 300px;
-            background-color: #2a475e;
-            padding: 20px;
-            position: relative;
-        }
-
-        .browse-preview {
-            display: none;
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            padding: 20px;
-        }
-
-        .browse-preview:target {
-            display: block;
-            position: relative;
-        }
-
-        .browse-preview h3 {
-            margin-top: 0;
-        }
-
-        .browse-preview .tags {
-            margin-bottom: 10px;
-        }
-
-        .browse-preview img {
-            width: 100%;
-            margin-bottom: 10px;
-            border-radius: 4px;
-        }
-    </style>
+    <title>Beam Store</title>
+    <link rel="stylesheet" href="style.css" />
 </head>
 
 <div class="navbar">
@@ -362,117 +33,136 @@
 </div>
 
 <div class="header-container">
-	<h2>paravozik.GIF is the best gif</h2>
-	<div class="carousel">
-		<a href="https://yande.re" class="carousel-item">
-			<img src="fish.jpg" alt="Game 1">
-			<div class="info">
-				<h3>Game Title 1</h3>
-				<div class="price">
-					<span class="discount">-50%</span> $19.99 → $9.99
-				</div>
-				<div class="description">A thrilling fast-paced action shooter with co-op gameplay.</div>
-				<div class="rating">★★★★☆</div>
-			</div>
-		</a>
+    <h2>Featured & Recommended</h2>
+    <div class="carousel">
+        <a href="game_n1.html" class="carousel-item">
+            <img src="https://cdn.akamai.steamstatic.com/steam/apps/1850570/header.jpg" alt="Game 1">
+            <div class="info">
+                <h3>DEATH STRANDING</h3>
+                <div class="price"><span class="discount">-40%</span> $39.99 <strong>→ $23.99</strong>
+                </div>
+                <div class="description">From legendary game creator Hideo Kojima comes a genre-defying experience. Sam
+                    Bridges must brave a world transformed by the Death Stranding.</div>
+                <div class="rating">★★★★☆</div>
+            </div>
+        </a>
 
-		<a class="carousel-item">
-			<img src="fish.jpg" alt="Game 2">
-			<div class="info">
-				<h3>Game Title 2</h3>
-				<div class="price">
-					<span class="discount">-30%</span> $29.99 → $20.99
-				</div>
-				<div class="description">Explore mysterious lands and solve ancient puzzles.</div>
-				<div class="rating">★★★☆☆</div>
-			</div>
-		</a>
+        <a class="carousel-item">
+            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/49520/header.jpg?t=1750800772"
+                alt="Game 2">
+            <div class="info">
+                <h>BORDERLANDS 2</h>
+                <div class="price"> $19.99</div>
+                <div class="description">The Ultimate Vault Hunter’s Upgrade lets you get the most out of the
+                    Borderlands 2 experience.</div>
+                <div class="rating">★★★★★</div>
+            </div>
+        </a>
+        <a class="carousel-item">
+            <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1237970/header.jpg?t=1726160226"
+                alt="Game 3">
+            <div class="info">
+                <h3>TITANFALL 2</h3>
+                <div class="price">
+                    <span class="discount">-85%</span> $29.99 → $4.49
+                </div>
+                <div class="description">Respawn Entertainment gives you the most advanced titan technology in its new,
+                    single player campaign & multiplayer experience.</div>
+                <div class="rating">★★★★★</div>
+            </div>
+        </a> <a class="carousel-item">
+            <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1245620/header.jpg?t=1748630546"
+                alt="Game 3">
+            <div class="info">
+                <h3>ELDEN RING</h3>
+                <div class="price"> $59.99</div>
+                <div class="description">THE CRITICALLY ACCLAIMED FANTASY ACTION RPG. Rise, Tarnished, and be guided by
+                    grace to brandish the power of the Elden Ring and become an Elden Lord in the Lands Between.</div>
+                <div class="rating">★★★☆☆</div>
+            </div>
+        </a>
 
-		<a class="carousel-item">
-			<img src="fish.jpg" alt="Game 3">
-			<div class="info">
-				<h3>Game Title 3</h3>
-				<div class="price">
-					<span class="discount">-70%</span> $49.99 → $14.99
-				</div>
-				<div class="description">An open-world RPG with hundreds of hours of content.</div>
-				<div class="rating">★★★★★</div>
-			</div>
-		</a>
-		<a class="carousel-item">
-			<img src="fish.jpg" alt="Game 3">
-			<div class="info">
-				<h3>Game Title 3</h3>
-				<div class="price">
-					<span class="discount">-70%</span> $49.99 → $14.99
-				</div>
-				<div class="description">An open-world RPG with hundreds of hours of content.</div>
-				<div class="rating">★★★★★</div>
-			</div>
-		</a>
+        <a class="carousel-item">
+            <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2246340/header.jpg?t=1748400511"
+                alt="Game 3">
+            <div class="info">
+                <h3>Monster Hunter Wilds</h3>
+                <div class="price">
+                    <span class="discount">-20%</span> $69.99 → $55.99
+                </div>
+                <div class="description">The unbridled force of nature runs wild and relentless, with environments
+                    transforming drastically from one moment to the next. </div>
+                <div class="rating">★★☆☆☆</div>
+            </div>
+        </a>
 
-		<a class="carousel-item">
-			<img src="fish.jpg" alt="Game 3">
-			<div class="info">
-				<h3>Game Title 3</h3>
-				<div class="price">
-					<span class="discount">-70%</span> $49.99 → $14.99
-				</div>
-				<div class="description">An open-world RPG with hundreds of hours of content.</div>
-				<div class="rating">★★★★★</div>
-			</div>
-		</a>
+        <a class="carousel-item">
+            <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1623730/a7cb2138e618f21b1379a03c59021b35cc862e8b/header_alt_assets_1.jpg?t=1750906920"
+                alt="Game 3">
+            <div class="info">
+                <h3>PALWORLD</h3>
+                <div class="price">
+                    <span class="discount">-25%</span> $29.99 → $22.49
+                </div>
+                <div class="description">Fight, farm, build and work alongside mysterious creatures called "Pals" in
+                    this completely new multiplayer, open world survival and crafting game!</div>
+                <div class="rating">★☆☆☆☆</div>
+            </div>
+        </a>
 
-		<a class="carousel-item">
-			<img src="fish.jpg" alt="Game 3">
-			<div class="info">
-				<h3>Game Title 3</h3>
-				<div class="price">
-					<span class="discount">-70%</span> $49.99 → $14.99
-				</div>
-				<div class="description">An open-world RPG with hundreds of hours of content.</div>
-				<div class="rating">★★★★★</div>
-			</div>
-		</a>
-
-	</div>
+    </div>
 </div>
 
 <div class="specials" id="specials">
     <h2>Specials & Events</h2>
     <div class="specials-list">
         <div class="special-card">
-            <img src="fish.jpg" alt="Special 1">
+            <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2420110/header.jpg?t=1749839261"
+                alt="Special 1">
             <div class="info">
-                <h4>Survival Quest</h4>
-                <div class="price"><span class="discount">-60%</span> $24.99 → $9.99</div>
-                <div class="description">Explore a post-apocalyptic world full of danger and mystery. Survive,
-                    craft, and uncover secrets.</div>
+                <h4>Horizon Forbidden West</h4>
+                <div class="price"><span class="discount">-40%</span> $59.99 → $35.99</div>
+                <div class="description">Experience the epic Horizon Forbidden West™ in its entirety with bonus content
+                    and the Burning Shores expansion included.</div>
                 <div class="rating">★★★★☆</div>
             </div>
         </div>
 
         <div class="special-card">
-            <img src="fish.jpg" alt="Special 2">
+            <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2358720/header.jpg?t=1749182199"
+                alt="Special 2">
             <div class="info">
-                <h4>Alien Conflict</h4>
-                <div class="price"><span class="discount">-75%</span> $39.99 → $9.99</div>
-                <div class="description">Join the interstellar war against alien invaders. Tactical combat and deep
-                    space exploration await.</div>
+                <h4>Black Myth: Wukong</h4>
+                <div class="price"><span class="discount">-20%</span> $59.99 → $47.99</div>
+                <div class="description">Black Myth: Wukong is an action RPG rooted in Chinese mythology.</div>
+                <div class="rating">★★★★★</div>
+            </div>
+        </div>
+
+        <div class="special-card">
+            <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1774580/header.jpg?t=1748945254"
+                alt="Special 3">
+            <div class="info">
+                <h4>STAR WARS Jedi: Survivor</h4>
+                <div class="price"><span class="discount">-80%</span> $69.99 → $13.99</div>
+                <div class="description">The story of Cal Kestis continues in STAR WARS Jedi: Survivor™, a
+                    galaxy-spanning, third-person, action-adventure game.</div>
                 <div class="rating">★★★☆☆</div>
             </div>
         </div>
 
         <div class="special-card">
-            <img src="fish.jpg" alt="Special 3">
+            <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/962130/header.jpg?t=1727719725"
+                alt="Special 4">
             <div class="info">
-                <h4>Island Builder</h4>
-                <div class="price"><span class="discount">-40%</span> $19.99 → $11.99</div>
-                <div class="description">Design and manage your own tropical paradise. Build, expand, and keep your
-                    islanders happy.</div>
-                <div class="rating">★★★★★</div>
+                <h4>Grounded</h4>
+                <div class="price"><span class="discount">-50%</span> $39.99 → $19.99</div>
+                <div class="description">The world is a vast, beautiful and dangerous place – especially when you have
+                    been shrunk to the size of an ant.</div>
+                <div class="rating">★★☆☆☆</div>
             </div>
         </div>
+
     </div>
 </div>
 
@@ -480,124 +170,197 @@
     <h2>Browse by Category</h2>
     <div class="category-list">
         <div class="category-card">
-            <img src="fish.jpg" alt="Action">
-            <h4>Action</h4>
+            <img src="https://store.fastly.steamstatic.com/categories/homepageimage/category/story_rich?cc=us&l=english"
+                alt="Story Rich">
+            <h4>Story rich</h4>
         </div>
         <div class="category-card">
-            <img src="fish.jpg" alt="Adventure">
+            <img src="https://store.fastly.steamstatic.com/categories/homepageimage/category/visual_novel?cc=us&l=english"
+                alt="Visual Novel">
+            <h4>Visual novel</h4>
+        </div>
+        <div class="category-card">
+            <img src="https://store.fastly.steamstatic.com/categories/homepageimage/category/adventure?cc=us&l=english"
+                alt="Adventure">
             <h4>Adventure</h4>
         </div>
         <div class="category-card">
-            <img src="fish.jpg" alt="RPG">
-            <h4>RPG</h4>
-        </div>
-        <div class="category-card">
-            <img src="fish.jpg" alt="Simulation">
-            <h4>Simulation</h4>
-        </div>
-        <div class="category-card">
-            <img src="fish.jpg" alt="Strategy">
+            <img src="https://store.fastly.steamstatic.com/categories/homepageimage/category/strategy?cc=us&l=english"
+                alt="Strategy">
             <h4>Strategy</h4>
         </div>
         <div class="category-card">
-            <img src="fish.jpg" alt="Fighting">
-            <h4>Fighting</h4>
+            <img src="https://store.fastly.steamstatic.com/categories/homepageimage/category/rpg?cc=us&l=english"
+                alt="RPG">
+            <h4>RPG</h4>
         </div>
         <div class="category-card">
-            <img src="fish.jpg" alt="Racing">
+            <img src="https://store.fastly.steamstatic.com/categories/homepageimage/category/survival?cc=us&l=english"
+                alt="Survival">
+            <h4>Survival</h4>
+        </div>
+        <div class="category-card">
+            <img src="https://store.fastly.steamstatic.com/categories/homepageimage/category/racing?cc=us&l=english"
+                alt="Racing">
             <h4>Racing</h4>
         </div>
         <div class="category-card">
-            <img src="fish.jpg" alt="Anime">
+            <img src="https://store.fastly.steamstatic.com/categories/homepageimage/category/simulation?cc=us&l=english"
+                alt="Simulation">
+            <h4>Simulation</h4>
+        </div>
+        <div class="category-card">
+            <img src="https://store.fastly.steamstatic.com/categories/homepageimage/category/fighting_martial_arts?cc=us&l=english"
+                alt="Fighting">
+            <h4>Fighting</h4>
+        </div>
+        <div class="category-card">
+            <img src="https://store.fastly.steamstatic.com/categories/homepageimage/category/anime?cc=us&l=english"
+                alt="Anime">
             <h4>Anime</h4>
-        </div>
-        <div class="category-card">
-            <img src="fish.jpg" alt="Casual">
-            <h4>Casual</h4>
-        </div>
-        <div class="category-card">
-            <img src="fish.jpg" alt="Survival">
-            <h4>Survival</h4>
         </div>
 
 
     </div>
+</div>
+
+<div class="browse-name">
+    <h2>Popular games</h2>
 </div>
 
 <div class="browse-block">
     <div class="browse-list">
         <a href="#preview1" class="browse-item">
-            <img src="fish.jpg" alt="Game 1">
+            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/220240/header.jpg?t=1750924252"
+                alt="Game 1">
             <div class="browse-details">
-                <h4>Sky Raiders</h4>
-                <div class="tags">Action, Multiplayer, Flight</div>
-                <div class="price"><span class="discount">-40%</span> $29.99 → $17.99</div>
+                <h4>Far Cry 3</h4>
+                <div class="tags">Open World, FPS, Action, Adventure, Shooter</div>
+                <div class="price"><span class="discount">-75%</span> $19.99 → $4.99</div>
             </div>
         </a>
         <a href="#preview2" class="browse-item">
-            <img src="fish.jpg" alt="Game 2">
+            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1517290/header.jpg?t=1748912112"
+                alt="Game 2">
             <div class="browse-details">
-                <h4>Deep Abyss</h4>
-                <div class="tags">Survival, Exploration, Ocean</div>
-                <div class="price">$24.99</div>
+                <h4>Battlefield 2042</h4>
+                <div class="tags">FPS, Multiplayer, Shooter, Military, War, PvP</div>
+                <div class="price"><span class="discount">-95%</span> $59.99 → $2.99</div>
             </div>
         </a>
         <a href="#preview3" class="browse-item">
-            <img src="fish.jpg" alt="Game 3">
+            <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1551360/header.jpg?t=1746471508"
+                alt="Game 3">
             <div class="browse-details">
-                <h4>Rogue Protocol</h4>
-                <div class="tags">Roguelike, Sci-Fi, Strategy</div>
-                <div class="price"><span class="discount">-30%</span> $19.99 → $13.99</div>
+                <h4>Forza Horizon 5</h4>
+                <div class="tags">Racing, Open world, Driving, Multiplayer, PvP</div>
+                <div class="price"> $59.99</div>
             </div>
         </a>
         <a href="#preview4" class="browse-item">
-            <img src="fish.jpg" alt="Game 4">
+            <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1172620/header.jpg?t=1747914761"
+                alt="Game 4">
             <div class="browse-details">
-                <h4>Mythbound</h4>
-                <div class="tags">RPG, Fantasy, Open World</div>
-                <div class="price">$39.99</div>
+                <h4>Sea of Thieves</h4>
+                <div class="tags">Multiplayer, Open world, Adventure, Pirates</div>
+                <div class="price"><span class="discount">-65%</span> $39.99 → $13.99</div>
             </div>
         </a>
         <a href="#preview5" class="browse-item">
-            <img src="fish.jpg" alt="Game 5">
+            <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1237950/header.jpg?t=1749220869"
+                alt="Game 5">
             <div class="browse-details">
-                <h4>Zero District</h4>
-                <div class="tags">Shooter, Cyberpunk, PvP</div>
-                <div class="price"><span class="discount">-50%</span> $49.99 → $24.99</div>
+                <h4>STAR WARS Battlefront II</h4>
+                <div class="tags">Multiplayer, Shooter, Third-Person Shooter, Space, PvP</div>
+                <div class="price"><span class="discount">-90%</span> $39.99 → $3.99</div>
             </div>
         </a>
     </div>
     <div class="browse-preview-block">
         <div class="browse-preview" id="preview1">
-            <h3>Sky Raiders</h3>
-            <div class="tags">Action, Multiplayer, Flight</div>
-            <img src="fish.jpg" alt="Screenshot">
-            <p>Take to the skies in an intense multiplayer dogfighting game.</p>
+            <h3>Far Cry 3</h3>
+            <div class="game_tags">
+                <div class="game_tag">Open World</div>
+                <div class="game_tag">FPS</div>
+                <div class="game_tag">Action</div>
+                <div class="game_tag">Adventure</div>
+                <div class="game_tag">Shooter</div>
+            </div>
+            <h3></h3>
+            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/220240/header.jpg?t=1750924252"
+                alt="Screenshot">
+            <p>Discover the dark secrets of a lawless island ruled by violence and take the fight to the enemy as you
+                try to escape. You’ll need more than luck to escape alive!</p>
         </div>
+
         <div class="browse-preview" id="preview2">
-            <h3>Deep Abyss</h3>
-            <div class="tags">Survival, Exploration, Ocean</div>
-            <img src="fish.jpg" alt="Screenshot">
-            <p>Explore the mysterious depths and survive the unknown.</p>
+            <h3>Battlefield 2042</h3>
+            <div class="game_tags">
+                <div class="game_tag">FPS</div>
+                <div class="game_tag">Multiplayer</div>
+                <div class="game_tag">Shooter</div>
+                <div class="game_tag">Military</div>
+                <div class="game_tag">War</div>
+                <div class="game_tag">PvP</div>
+            </div>
+            <h3></h3>
+            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1517290/header.jpg?t=1748912112"
+                alt="Screenshot">
+            <p>Battlefield™ 2042 is a first-person shooter that marks the return to the iconic all-out warfare of the
+                franchise.
+            </p>
         </div>
         <div class="browse-preview" id="preview3">
-            <h3>Rogue Protocol</h3>
-            <div class="tags">Roguelike, Sci-Fi, Strategy</div>
-            <img src="fish.jpg" alt="Screenshot">
-            <p>Hack through waves of security systems in this sci-fi rogue.</p>
+            <h3>Forza Horizon 5</h3>
+            <div class="game_tags">
+                <div class="game_tag">Racing</div>
+                <div class="game_tag">Open wolrd</div>
+                <div class="game_tag">Driving</div>
+                <div class="game_tag">Multiplayer</div>
+                <div class="game_tag">PvP</div>
+            </div>
+            <h3></h3>
+            <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1551360/header.jpg?t=1746471508"
+                alt="Screenshot">
+            <p>Explore the vibrant open world landscapes of Mexico with limitless, fun driving action in the world’s
+                greatest cars.</p>
         </div>
         <div class="browse-preview" id="preview4">
-            <h3>Mythbound</h3>
-            <div class="tags">RPG, Fantasy, Open World</div>
-            <img src="fish.jpg" alt="Screenshot">
-            <p>Embark on an epic quest through a world of myths and magic.</p>
+            <h3>Sea of Thieves</h3>
+            <div class="game_tags">
+                <div class="game_tag">Multiplayer</div>
+                <div class="game_tag">Open wolrd</div>
+                <div class="game_tag">Adventure</div>
+                <div class="game_tag">Pirates</div>
+            </div>
+            <h3></h3>
+            <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1172620/header.jpg?t=1747914761"
+                alt="Screenshot">
+            <p>Sea of Thieves is a smash-hit pirate adventure game, offering the quintessential pirate experience of
+                plundering lost treasures, intense battles, vanquishing sea monsters and more.</p>
         </div>
         <div class="browse-preview" id="preview5">
-            <h3>Zero District</h3>
-            <div class="tags">Shooter, Cyberpunk, PvP</div>
-            <img src="fish.jpg" alt="Screenshot">
-            <p>Battle in neon-lit streets in this competitive cyberpunk shooter.</p>
+            <h3>STAR WARS Battlefront II</h3>
+            <div class="game_tags">
+                <div class="game_tag">Multiplayer</div>
+                <div class="game_tag">Shooter</div>
+                <div class="game_tag">Third-Person Shooter</div>
+                <div class="game_tag">Space</div>
+                <div class="game_tag">PvP</div>
+            </div>
+            <h3></h3>
+            <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1237950/header.jpg?t=1749220869"
+                alt="Screenshot">
+            <p>Be the hero in the ultimate STAR WARS™ battle fantasy with STAR WARS™ Battlefront™ II: Celebration
+                Edition!</p>
         </div>
     </div>
 </div>
+
+<footer>
+    <div>© 2025 Vadym Ivanchuk. All rights reserved. All trademarks are property of their respective owners in the UA
+        and other countries.</div>
+    <div>Beam included in all prices where applicable.&nbsp;&nbsp;
+</footer>
+
 </body>
